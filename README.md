@@ -2,9 +2,12 @@
 
 A new Flutter project.
 
-![image](https://github.com/Parth002933v/flutter_weather/assets/140066704/d3bb453e-9692-448e-8c85-1ca7c43b002c)
 
-![image](https://github.com/Parth002933v/flutter_weather/assets/140066704/ed126c06-eca0-4f64-92ca-c273dd450f08)
+<img src="https://github.com/Parth002933v/flutter_weather/assets/140066704/d3bb453e-9692-448e-8c85-1ca7c43b002c" alt="Image Alt Text" width="300" height="600"  >
+
+
+
+<img src="https://github.com/Parth002933v/flutter_weather/assets/140066704/ed126c06-eca0-4f64-92ca-c273dd450f08" alt="Image Alt Text" width="300" height="600">
 
 
 
