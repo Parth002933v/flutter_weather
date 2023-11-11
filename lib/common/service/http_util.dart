@@ -3,7 +3,7 @@ import 'package:flutter_weather/common/model/weather_model.dart';
 import 'package:flutter_weather/common/utils/constants.dart';
 
 class HttpUtil {
-  late Dio dio;
+  late Dio _dio;
 
   static final HttpUtil _instance = HttpUtil._internal();
 
@@ -20,7 +20,7 @@ class HttpUtil {
       responseType: ResponseType.json,
     );
 
-    dio = Dio(options);
+    _dio = Dio(options);
   }
 
   Future<Response> get(String city) async {
@@ -28,7 +28,7 @@ class HttpUtil {
 
     final path = "/forecast.json?key=$key&q=$city";
 
-    var responce = await dio.get(path);
+    var responce = await _dio.get(path);
 
     return responce;
   }
