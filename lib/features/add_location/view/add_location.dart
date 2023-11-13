@@ -32,7 +32,8 @@ class SavedLocation extends ConsumerWidget {
                   SizedBox(height: 5.h),
                   savedLocationList(),
                   SizedBox(height: 10.h),
-                  addNewLocationCard()
+                  addNewLocationCard(context: context),
+                  SizedBox(height: 10.h),
                 ],
               ),
             ),

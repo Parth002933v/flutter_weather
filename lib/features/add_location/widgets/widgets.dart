@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:developer';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,9 +52,7 @@ Expanded savedLocationList() {
         LocationCard(city: 'London'),
         LocationCard(city: 'Rome'),
         LocationCard(city: 'New York'),
-        LocationCard(city: 'Beijing'),
-
-
+        LocationCard(city: 'BeijingqfWEEF'),
       ],
     ),
   );
@@ -76,7 +76,7 @@ class LocationCard extends ConsumerWidget {
         color: Colors.white.withOpacity(0.4),
         borderRadius: const BorderRadius.all(Radius.circular(30)),
       ),
-      child: data.when(
+      child: data.whenOrNull(
         data: (data) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +85,7 @@ class LocationCard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text20normal(
-                    text: data.location.name,
+                    text: data!.location.name,
                     fontWeight: FontWeight.bold,
                   ),
                   Text16normal(
@@ -149,39 +149,53 @@ class LocationCard extends ConsumerWidget {
             ],
           );
         },
+        skipError: true,
         error: (error, stackTrace) {
-          log(error.toString());
-          return Center(child: Text(error.toString()));
-        },
-        loading: () {
-          return const Center(child: CircularProgressIndicator());
+          return;
         },
       ),
     );
   }
 }
 
-Container addNewLocationCard() {
-  return Container(
-    height: 70.h,
-    width: 370.w,
-    margin: EdgeInsets.only(bottom: 10.h),
-    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-    decoration: BoxDecoration(
-      color: Colors.white.withOpacity(0.4),
-      borderRadius: const BorderRadius.all(Radius.circular(20)),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.add_circle_outline_outlined, color: Colors.white),
-        SizedBox(width: 10.w),
-        const Text20normal(
-          text: 'Add New',
-          fontWeight: FontWeight.bold,
-          shadow: false,
-        )
-      ],
+InkWell addNewLocationCard({required BuildContext context}) {
+  return InkWell(
+    borderRadius: const BorderRadius.all(Radius.circular(20)),
+    onTap: () {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid Data'),
+          content: const Text('Please enter all the required fields proparly'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Ok'),
+            )
+          ],
+        ),
+      );
+    },
+    child: Container(
+      height: 70.h,
+      width: 370.w,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.4),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.add_circle_outline_outlined, color: Colors.white),
+          SizedBox(width: 10.w),
+          const Text20normal(
+            text: 'Add New',
+            fontWeight: FontWeight.bold,
+            shadow: false,
+          )
+        ],
+      ),
     ),
   );
 }
