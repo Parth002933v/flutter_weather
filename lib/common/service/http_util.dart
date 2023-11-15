@@ -32,4 +32,15 @@ class HttpUtil {
 
     return responce;
   }
+
+
+  Future<Response> getCity(String city) async {
+    const key = AppConstants.SERVER_API_KEY;
+
+    final path = "/search.json?key=$key&q=$city";
+
+    var responce = await _dio.get(path);
+
+    return responce;
+  }
 }

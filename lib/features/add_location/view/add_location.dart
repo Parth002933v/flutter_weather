@@ -21,18 +21,24 @@ class SavedLocation extends ConsumerWidget {
       ),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-        child: Scaffold(
-          body: SafeArea(
-            child: Container(
+        child: SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              flexibleSpace: const AllLocationAppBar(),
+            ),
+            body: Container(
               padding: EdgeInsets.symmetric(horizontal: 25.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  appBar(),
+                  // appBar(ref: ref),
                   SizedBox(height: 5.h),
-                  savedLocationList(),
+                  const SavedLocationList(),
                   SizedBox(height: 10.h),
-                  addNewLocationCard(context: context),
+                  addNewLocationCard(context: context, ref: ref),
                   SizedBox(height: 10.h),
                 ],
               ),

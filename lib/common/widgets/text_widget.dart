@@ -192,6 +192,8 @@ class Text20normal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
           fontSize: 20,
           color: color,

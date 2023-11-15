@@ -15,4 +15,10 @@ class StorageServices {
   }
 
 
+  getSavedLocation()
+  {
+
+  }
+
+
 }
