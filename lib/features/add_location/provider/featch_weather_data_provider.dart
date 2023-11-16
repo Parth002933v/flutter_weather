@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_weather/common/helper/helper.dart';
 import 'package:flutter_weather/common/model/weather_model.dart';
@@ -16,6 +17,8 @@ final fetchWeatherDataInSavedCardProvider =
     } else {
       yield null;
     }
+  } on DioException catch (e) {
+    Helper.showToastMessage(e.toString());
   } catch (e) {
     // Handle errors
     log('Error: $e');
@@ -23,7 +26,7 @@ final fetchWeatherDataInSavedCardProvider =
   }
 });
 
-final   searchCityProvider =
+final searchCityProvider =
     StreamProvider.family<List<CityLocationModel>?, String>((ref, city) async* {
   try {
     final response = await HttpUtil().getCity(city);
@@ -38,6 +41,8 @@ final   searchCityProvider =
     } else {
       yield null;
     }
+  } on DioException catch (e) {
+    Helper.showToastMessage(e.toString());
   } catch (e) {
     // Handle errors
     log('Error: $e');

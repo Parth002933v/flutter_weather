@@ -33,7 +33,6 @@ class HttpUtil {
     return responce;
   }
 
-
   Future<Response> getCity(String city) async {
     const key = AppConstants.SERVER_API_KEY;
 

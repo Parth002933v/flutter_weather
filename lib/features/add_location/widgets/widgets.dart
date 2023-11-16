@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_weather/common/utils/constants.dart';
 import 'package:flutter_weather/common/widgets/text_widget.dart';
 import 'package:flutter_weather/features/add_location/model/search_city_model.dart';
 import 'package:flutter_weather/features/add_location/provider/featch_weather_data_provider.dart';
@@ -109,18 +110,21 @@ class SavedLocationList extends ConsumerWidget {
     return savedCitys();
   }
 
-  Expanded savedCitys() {
-    return Expanded(
-      child: ListView(
-        shrinkWrap: true,
-        children: const [
-          LocationCard(city: 'London'),
-          LocationCard(city: 'Rome'),
-          LocationCard(city: 'New York'),
-          LocationCard(city: 'Beijin'),
-        ],
-      ),
-    );
+  Widget savedCitys() {
+    final savedCity = Global.services.getSavedLocation();
+    if (savedCity.isNotEmpty) {
+      print("savedCity is not empty $savedCity");
+      return Expanded(
+        child: ListView.builder(
+          itemCount: savedCity.length,
+          itemBuilder: (context, index) =>
+              LocationCard(city: savedCity[index].city),
+        ),
+      );
+    } else {
+      print("savedCity is $savedCity");
+      return const Center(child: Text16normal(text: 'Try Adding new Location'));
+    }
   }
 
   Container onSeachCityCard(
@@ -128,6 +132,7 @@ class SavedLocationList extends ConsumerWidget {
     String searchText, {
     required WidgetRef ref,
   }) {
+    final citySaveN = ref.read(citySaveProvider.notifier);
     return Container(
       child: data.when(
           data: (data) {
@@ -137,13 +142,14 @@ class SavedLocationList extends ConsumerWidget {
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {
-                        final citys =
-                            ref.read(citySaveProvider.notifier).onNewCityAdd(
-                                  SavedCityModel(
-                                      city: data[index].name,
-                                      country: data[index].country),
-                                );
+                      onTap: () async {
+                        final citys = citySaveN.onNewCityAdd(SavedCityModel(
+                            city: data[index].name,
+                            country: data[index].country));
+
+                        print('on tap : $citys');
+                        await Global.services
+                            .setString(AppConstants.CITY_KEY, citys);
                       },
                       child: LocationCard(
                           city: data[index].name, showcountry: true),
