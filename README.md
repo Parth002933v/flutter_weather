@@ -8,11 +8,12 @@ demo app link : https://drive.google.com/file/d/1v0aE9i1tuzNTUbLwIWwV3IiEitOeskx
 
 <img src="https://github.com/Parth002933v/flutter_weather/assets/140066704/ed126c06-eca0-4f64-92ca-c273dd450f08" alt="Image Alt Text" width="300" height="600">
 
+<img src="https://github.com/Parth002933v/flutter_weather/assets/140066704/b6180927-a0d8-444f-be22-58f760df9606" alt="Image Alt Text" width="300" height="600">
 
 
 
+## Getting Started!
 
-## Getting Started
 
 This project is a starting point for a Flutter application.
 
