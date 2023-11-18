@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_weather/common/model/weather_model.dart';
@@ -14,6 +15,7 @@ final fetchWeatherDataProvider = StreamProvider((ref) async* {
     if (responce.statusCode == 200) {
       yield WeatherModel.fromJson(responce.data);
     }
+    // yield null;
   } catch (e) {
     // Handle errors
     log('Error: $e');

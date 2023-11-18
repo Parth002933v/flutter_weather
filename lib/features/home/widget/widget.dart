@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_weather/common/model/weather_model.dart';
 import 'package:flutter_weather/common/utils/enums.dart';
 import 'package:flutter_weather/common/utils/my_date_time_util.dart';
 import 'package:flutter_weather/common/widgets/text_widget.dart';
 import 'package:flutter_weather/main.dart';
 import 'package:lottie/lottie.dart';
 
-Container weatherRoutine() {
+Container weatherRoutine({required String date, required Day day}) {
   return Container(
-    margin: EdgeInsets.only(right: 30.w),
+    margin: EdgeInsets.symmetric(horizontal: 12.w),
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text16normal(text: 'Wed 16'),
-        LottieBuilder.asset('assets/animate_logo/1063.json', height: 40.h),
-        const Text16normal(text: '22°'),
-        const Text12normal(text: '1-5\nkm/h'),
+        Text16normal(text: '${MyDateUtils.getWeekDate(date)}'),
+        // LottieBuilder.asset('assets/animate_logo/1063.json', height: 40.h),
+        weatherIndicateLogo(
+          conditionCode: day.condition.code,
+          isDay: 1,
+          height: 55.h,
+          width: 55.w,
+        ),
+        Text16normal(text: '${day.avgtempC.toInt()}°'),
+        // const Text12normal(text: '1-5\nkm/h'),
+        Text12normal(text: '${day.maxwindKph}\nkm/h'),
       ],
     ),
   );
 }
 
-Container fullDayStatus() {
+Container fullDayStatus({required List<Forecastday> forecastday}) {
   return Container(
     height: 160.h,
     width: 370.w,
@@ -32,12 +41,12 @@ Container fullDayStatus() {
     ),
     child: ListView(
       scrollDirection: Axis.horizontal,
+      shrinkWrap: true,
       children: [
-        weatherRoutine(),
-        weatherRoutine(),
-        weatherRoutine(),
-        weatherRoutine(),
-        weatherRoutine(),
+        weatherRoutine(date: forecastday[0].date, day: forecastday[0].day),
+        weatherRoutine(date: forecastday[1].date, day: forecastday[1].day),
+        weatherRoutine(date: forecastday[2].date, day: forecastday[2].day),
+        weatherRoutine(date: forecastday[2].date, day: forecastday[2].day),
       ],
     ),
   );

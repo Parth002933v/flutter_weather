@@ -10,7 +10,7 @@ import 'package:flutter_weather/features/add_location/model/search_city_model.da
 final fetchWeatherDataInSavedCardProvider =
     StreamProvider.family<WeatherModel?, String>((ref, city) async* {
   try {
-    final responce = await HttpUtil().get(city);
+    final responce = await HttpUtil().getOne(city);
 
     if (responce.statusCode == 200) {
       yield WeatherModel.fromJson(responce.data);

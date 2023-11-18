@@ -26,12 +26,23 @@ class HttpUtil {
   Future<Response> get(String city) async {
     const key = AppConstants.SERVER_API_KEY;
 
+    final path = "/forecast.json?key=$key&q=$city&days=6";
+
+    var responce = await _dio.get(path);
+
+    return responce;
+  }
+
+  Future<Response> getOne(String city) async {
+    const key = AppConstants.SERVER_API_KEY;
+
     final path = "/forecast.json?key=$key&q=$city";
 
     var responce = await _dio.get(path);
 
     return responce;
   }
+
 
   Future<Response> getCity(String city) async {
     const key = AppConstants.SERVER_API_KEY;

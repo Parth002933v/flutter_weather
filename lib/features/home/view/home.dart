@@ -48,12 +48,12 @@ class Home extends ConsumerWidget {
                     weatherTemperature(temperature: data.current.tempC),
                     SizedBox(height: 70.h),
                     atmosphereStatus(
-                        humidity: data.current.humidity.toString(),
+                      humidity: data.current.humidity.toString(),
                       wind: data.current.windKph.toString(),
                       feelsLike: data.current.feelslikeC.toInt().toString(),
                     ),
                     SizedBox(height: 30.h),
-                    fullDayStatus(),
+                    fullDayStatus(forecastday : data.forecast.forecastday),
                   ],
                 ),
               );

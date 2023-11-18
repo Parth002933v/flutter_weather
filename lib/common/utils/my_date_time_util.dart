@@ -7,6 +7,12 @@ class MyDateUtils {
     return formatDate(getDate, [MM, " ", dd]);
   }
 
+  static getWeekDate(String dateTime) {
+    final getDate = DateTime.parse(dateTime);
+
+    return formatDate(getDate, [D, " ", dd]);
+  }
+
   static getDateTime(String dateTime) {
     final getDate = DateTime.parse(dateTime);
 
