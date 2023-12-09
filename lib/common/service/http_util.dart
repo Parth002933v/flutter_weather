@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_weather/common/model/weather_model.dart';
 import 'package:flutter_weather/common/utils/constants.dart';
 
 class HttpUtil {
@@ -42,7 +41,6 @@ class HttpUtil {
 
     return responce;
   }
-
 
   Future<Response> getCity(String city) async {
     const key = AppConstants.SERVER_API_KEY;
