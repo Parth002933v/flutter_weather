@@ -34,7 +34,6 @@ class SavedLocation extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // appBar(ref: ref),
                   SizedBox(height: 5.h),
                   const SavedLocationList(),
                   SizedBox(height: 10.h),

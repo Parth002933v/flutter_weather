@@ -182,7 +182,7 @@ class LocationCard extends ConsumerWidget {
     return Container(
       height: 170.h,
       width: 370.w,
-      margin: EdgeInsets.only(bottom: 20.h),
+      // margin: EdgeInsets.only(bottom: 20.h),
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.4),
@@ -199,7 +199,7 @@ class LocationCard extends ConsumerWidget {
                 children: [
                   if (showcountry) Text12normal(text: data!.location.country),
                   SizedBox(
-                    width: 250.w,
+                    width: 230.w,
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       alignment: Alignment.centerLeft,
@@ -247,15 +247,11 @@ class LocationCard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // LottieBuilder.asset(
-                  //   'assets/animate_logo/1063.json',
-                  //   height: 40.h,
-                  // ),
                   weatherIndicateLogo(
                     conditionCode: data.current.condition.code,
                     isDay: data.current.isDay,
-                    height: 50,
-                    width: 50,
+                    height: 50.w,
+                    width: 50.w,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,41 +284,7 @@ InkWell addNewLocationCard({
 }) {
   return InkWell(
     borderRadius: const BorderRadius.all(Radius.circular(20)),
-    onTap: () {
-      // showDialog(
-      //   context: context,
-      //   builder: (ctx) {
-      //     return AlertDialog(
-      //       // backgroundColor: Colors.white.withOpacity(0.5),
-      //       title: const Center(child: Text('Enter The City')),
-      //       content: Container(
-      //         height: 50.h,
-      //         width: 200.w,
-      //         child: Column(
-      //           // mainAxisAlignment: MainAxisAlignment.center,
-      //           // crossAxisAlignment: CrossAxisAlignment.center,
-      //           children: [
-      //             TextFormField(
-      //               onChanged: (value) {},
-      //               keyboardType: TextInputType.text,
-      //               maxLines: 1,
-      //               decoration:
-      //                   const InputDecoration(hintText: 'Enter The City'),
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //
-      //       actions: [
-      //         TextButton(
-      //           onPressed: () async {},
-      //           child: const Text('Get City'),
-      //         )
-      //       ],
-      //     );
-      //   },
-      // );
-    },
+    onTap: () {},
     child: Container(
       height: 70.h,
       width: 370.w,
